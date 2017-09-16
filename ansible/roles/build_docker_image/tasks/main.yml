@@ -13,3 +13,19 @@
     state: reloaded
     publish_all_ports: yes
   become: yes
+
+- name: Log into DockerHub#
+  docker_login:
+    username: numaid
+    password: mHb4Qe;m
+    email: diamun.fs@gmail.com
+  become: yes
+
+- name: Tag and push to docker hub
+  docker_image:
+    name: nginx_python_12345
+    repository: numaid/dockernginxpython
+    tag: latest
+    push: yes
+  become: yes
+  
