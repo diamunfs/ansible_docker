@@ -7,10 +7,6 @@ ADD nginx.conf /etc/nginx/nginx.conf
 
 ADD index.html /var/www/site/index.html
 
-#VOLUME ["/var/www/site/index.html", "/etc/nginx/nginx.conf"]
-
-#WORKDIR /home/ubuntu/solissa
-
 EXPOSE 80
 
 CMD ["nginx", "-g", "daemon off;"]
