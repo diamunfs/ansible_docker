@@ -1,0 +1,15 @@
+---
+- name: upload the site directory to the docker host
+  synchronize: src=roles/build_docker_image/templates dest=/home/ubuntu/diamun
+
+- name: build the image
+  command: docker build -t nginx_python_12345:latest /home/ubuntu/diamun/templates
+  become: yes
+
+- name: run the site in a docker container
+  docker:
+    name: container_python_nginx
+    image: "nginx_python_12345:latest"
+    state: reloaded
+    publish_all_ports: yes
+  become: yes
